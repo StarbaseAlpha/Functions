@@ -45,6 +45,7 @@ function Functions() {
 
       options.sandbox.req = {
         "headers": req.headers || {},
+        "ip": req.ip || null,
         "path": req.path || '/',
         "url": req.url || '/',
         "method":req.method,
