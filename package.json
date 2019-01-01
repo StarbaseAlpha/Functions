@@ -24,5 +24,8 @@
   "bugs": {
     "url": "https://github.com/starbasealpha/functions/issues"
   },
-  "homepage": "https://github.com/starbasealpha/functions#readme"
+  "homepage": "https://github.com/starbasealpha/functions#readme",
+  "dependencies": {
+    "vm2": "^3.6.5"
+  }
 }
