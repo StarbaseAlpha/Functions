@@ -1,0 +1,28 @@
+{
+  "name": "@starbase/functions",
+  "version": "0.0.1",
+  "description": "Starbase Functions",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/starbasealpha/functions.git"
+  },
+  "keywords": [
+    "Functions",
+    "Starbase",
+    "faas",
+    "serverless",
+    "cloud",
+    "lambda",
+    "function"
+  ],
+  "author": "Mike Fuller",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/starbasealpha/functions/issues"
+  },
+  "homepage": "https://github.com/starbasealpha/functions#readme"
+}
