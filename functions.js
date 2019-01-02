@@ -53,12 +53,54 @@ function Functions() {
         "body": req.body || {},
         "params": req.params || {}
       };
-     
-      functions.runCode(code, env, options).then(result => {
-        res.json(result);
-      }).catch(err => {
-        res.status(err.code||400).json({"code":err.code||400, "message":err.message||err.toString()||"ERROR!"});
+
+      options.sandbox.res = {
+        "type":"json",
+        "disposition": null,
+        "location": null,
+        "status": null
+      };
+
+      functions.runCode(code, env, options).then(result=>{
+
+        res.type(options.sandbox.res.type);
+        let statusCode = parseInt(options.sandbox.res.status||0);
+
+        if (statusCode && !isNaN(statusCode) && statusCode > 199 && statusCode < 500) {
+          res.status(statusCode);
+        } else {
+          res.status(200);
+        }
+
+        if (options.sandbox.res.disposition && typeof options.sandbox.res.disposition === 'string') {
+          res.setHeader('Content-Disposition', 'attachment;filename=' + options.sandbox.res.disposition);
+        }
+
+        if (options.sandbox.res.location && typeof options.sandbox.res.location === "string") {
+          res.setHeader('location', options.sandbox.res.location);
+        }
+
+        res.send(result);
+
+      }).catch(err=>{
+
+        res.type(options.sandbox.res.type);
+        let statusCode = parseInt(options.sandbox.res.status||0);
+
+        if (statusCode && !isNaN(statusCode) && statusCode > 199 && statusCode < 500) {
+          res.status(statusCode);
+        } else {
+          res.status(400);
+        }
+
+        if (options.sandbox.res.location && typeof options.sandbox.res.location === "string") {
+          res.setHeader('location', options.sandbox.res.location);
+        }
+
+        res.send(err);
+
       });
+
     };
   };
 
